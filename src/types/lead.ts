@@ -8,12 +8,6 @@ export type BusinessType =
 /** Стиль сайту (крок 3) */
 export type StylePreference = "modern" | "minimal" | "bold" | "unsure";
 
-export type websiteGoal =
-  | "get-clients"
-  | "sell-products"
-  | "portfolio"
-  | "information";
-
 /** Відповіді форми для API /api/leads/create */
 export interface LeadFormData {
   // Крок 1

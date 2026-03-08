@@ -14,8 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SolidLine Digital",
-  description: "Simple websites that bring real clients",
+  title: {
+    default: "SolidLine Digital — Simple Websites That Bring Real Clients",
+    template: "%s | SolidLine Digital",
+  },
+  description:
+    "We build clean, fast websites for small businesses that want clarity, structure, and results — not unnecessary complexity.",
+  keywords: ["web development", "small business website", "landing page", "lead generation", "web studio"],
+  openGraph: {
+    title: "SolidLine Digital — Simple Websites That Bring Real Clients",
+    description:
+      "Clean, fast websites for small businesses. Get a professional site that actually works for your business.",
+    siteName: "SolidLine Digital",
+    type: "website",
+    locale: "en_US",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

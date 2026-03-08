@@ -3,6 +3,7 @@ import { useState } from "react";
 import { pricingCategories, currencySymbol } from "@/data/pricingOptions";
 import type { Currency } from "@/data/pricingOptions";
 import useInView from "@/hooks/useInView";
+import Link from "next/link";
 import { HiOutlineCalculator, HiOutlineArrowRight } from "react-icons/hi";
 
 const PriceCalculator = () => {
@@ -13,6 +14,8 @@ const PriceCalculator = () => {
         pricingCategories.forEach((cat) => {
             if (cat.type === "radio") {
                 initial[cat.id] = [cat.options[0].id];
+            } else if (cat.id === "features") {
+                initial[cat.id] = ["contact-form"];
             } else {
                 initial[cat.id] = [];
             }
@@ -113,9 +116,9 @@ const PriceCalculator = () => {
                         <p className="text-4xl font-bold text-[#7C5CFF]">{total} {symbol}</p>
                         <p className="text-[#888] text-sm mt-4 border-l-2 border-[#7C5CFF] pl-4">this is an estimated price. final offer depends on project scope.</p>
                     </div>
-                    <a href="#contact" className="inline-flex items-center gap-2 bg-[#7C5CFF] px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-[#6B4FE0] hover:-translate-y-0.5 shadow-lg shadow-[#7C5CFF]/20">
-                        discuss this project <HiOutlineArrowRight />
-                    </a>
+                    <Link href="/get-started" className="inline-flex items-center gap-2 bg-[#7C5CFF] px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-[#6B4FE0] hover:-translate-y-0.5 shadow-lg shadow-[#7C5CFF]/20">
+                        start your project <HiOutlineArrowRight />
+                    </Link>
                 </div>
             </div>
         </section>

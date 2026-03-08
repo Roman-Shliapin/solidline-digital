@@ -6,7 +6,7 @@ import Footer from "./Footer";
 
 export default function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isGetStarted = pathname === "/get-started";
+  const isGetStarted = pathname?.startsWith("/get-started");
 
   if (isGetStarted) {
     return <>{children}</>;

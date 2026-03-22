@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -22,21 +22,9 @@ import {
   HiOutlinePencil,
 } from "react-icons/hi";
 import type { LeadFormData, BusinessType, StylePreference } from "@/types/lead";
-
-const INPUT_CLASS =
-  "bg-[#141414] border border-[#222] pl-10 pr-4 py-3 rounded-xl w-full outline-none focus:border-[#7C5CFF] focus:shadow-sm focus:shadow-[#7C5CFF]/10 transition-all duration-300 placeholder:text-[#444]";
-const INPUT_ERROR_CLASS =
-  "bg-[#141414] border border-red-500/50 pl-10 pr-4 py-3 rounded-xl w-full outline-none focus:border-red-500 focus:shadow-sm focus:shadow-red-500/10 transition-all duration-300 placeholder:text-[#444]";
-const TEXTAREA_CLASS =
-  "bg-[#141414] border border-[#222] pl-10 pr-4 py-3 rounded-xl w-full outline-none focus:border-[#7C5CFF] focus:shadow-sm focus:shadow-[#7C5CFF]/10 transition-all duration-300 placeholder:text-[#444] resize-none";
-const TEXTAREA_ERROR_CLASS =
-  "bg-[#141414] border border-red-500/50 pl-10 pr-4 py-3 rounded-xl w-full outline-none focus:border-red-500 focus:shadow-sm focus:shadow-red-500/10 transition-all duration-300 placeholder:text-[#444] resize-none";
-const ICON_CLASS = "absolute left-3 top-1/2 -translate-y-1/2 text-[#444] text-lg pointer-events-none";
-const TEXTAREA_ICON_CLASS = "absolute left-3 top-4 text-[#444] text-lg pointer-events-none";
-const LABEL_CLASS = "text-sm text-[#888] mb-1 block";
-
-const OPTION_BTN = (active: boolean) =>
-  `px-4 py-3 rounded-xl border text-left transition-all flex-1 min-w-0 ${active ? "border-[#7C5CFF] bg-[#7C5CFF]/10 text-[#7C5CFF]" : "border-[#222] bg-[#141414] text-[#888] hover:border-[#333] hover:text-[#ccc]"}`;
+import { FORM } from "@/styles/forms";
+import { saveLeadFormForPreview } from "@/lib/getStartedPreviewStorage";
+import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 
 const BUSINESS_OPTIONS: { value: BusinessType; label: string }[] = [
   { value: "local-service", label: "Local service" },
@@ -80,11 +68,12 @@ function FieldError({ show, message }: { show: boolean; message: string }) {
 }
 
 function FormMessage({ type, message }: { type: "error" | "success"; message: string }) {
-  const bg = type === "error" ? "bg-red-500/10 border-red-500/30 text-red-400" : "bg-green-500/10 border-green-500/30 text-green-400";
+  const bg =
+    type === "error"
+      ? "bg-red-500/10 border-red-500/30 text-red-400"
+      : "bg-green-500/10 border-green-500/30 text-green-400";
   return (
-    <div className={`px-4 py-3 rounded-xl border text-sm mb-6 ${bg}`}>
-      {message}
-    </div>
+    <div className={`px-4 py-3 rounded-xl border text-sm mb-6 ${bg}`}>{message}</div>
   );
 }
 
@@ -107,7 +96,6 @@ export default function GetStartedPage() {
     businessName: touched && !form.businessName.trim(),
     location: touched && !form.location.trim(),
   };
-
   const step2Errors = {
     description: touched && !form.description.trim(),
     services: touched && form.services.length === 0,
@@ -116,10 +104,16 @@ export default function GetStartedPage() {
   };
 
   const validateStep1 = () =>
-    form.name.trim() && form.email.trim() && isValidEmail(form.email) && form.businessName.trim() && form.location.trim();
-
+    form.name.trim() &&
+    form.email.trim() &&
+    isValidEmail(form.email) &&
+    form.businessName.trim() &&
+    form.location.trim();
   const validateStep2 = () =>
-    form.description.trim() && form.services.length > 0 && form.customers.trim() && form.differentiation.trim();
+    form.description.trim() &&
+    form.services.length > 0 &&
+    form.customers.trim() &&
+    form.differentiation.trim();
 
   const canNext = () => {
     if (step === 1) return validateStep1();
@@ -134,6 +128,7 @@ export default function GetStartedPage() {
       setTouched(false);
     }
   };
+
   const handleBack = () => {
     if (step > 1) {
       setStep(step - 1);
@@ -154,7 +149,7 @@ export default function GetStartedPage() {
         router.push("/get-started/thank-you");
       } else {
         const data = await res.json().catch(() => ({}));
-        setError(data.error || "Something went wrong. Please try again.");
+        setError(data.error ?? "Something went wrong. Please try again.");
       }
     } catch {
       setError("Network error. Check your connection.");
@@ -164,10 +159,14 @@ export default function GetStartedPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0A0A0A] to-[#0F0F0F]">
+    <main className="min-h-screen bg-gradient-to-b from-[#0A0A0A] to-[#0F0F0F] text-white">
       <div className="sticky top-0 z-10 flex items-center justify-between max-w-2xl mx-auto px-6 py-4 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-[#222]">
-        <Link href="/" className="font-bold text-lg transition-colors duration-300 hover:text-[#7C5CFF]">SolidLine Digital</Link>
-        <Link href="/" className="bg-[#7C5CFF] px-5 py-2 rounded-full text-sm font-semibold transition-all hover:bg-[#6B4FE0]">Home</Link>
+        <Link href="/" className="font-bold text-lg transition-colors duration-300 hover:text-[#7C5CFF]">
+          SolidLine Digital
+        </Link>
+        <Link href="/" className={FORM.btnSecondary}>
+          Home
+        </Link>
       </div>
       <div className="max-w-xl mx-auto py-16 px-6">
         <div className="flex items-center gap-3 mb-8">
@@ -190,44 +189,80 @@ export default function GetStartedPage() {
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">Basic information</h2>
             <div>
-              <label htmlFor="name" className={LABEL_CLASS}>Name</label>
+              <label htmlFor="name" className={FORM.label}>Name</label>
               <div className="relative">
-                <HiOutlineUser className={ICON_CLASS} />
-                <input className={step1Errors.name ? INPUT_ERROR_CLASS : INPUT_CLASS} id="name" value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Your name" maxLength={100} />
+                <HiOutlineUser className={FORM.icon} />
+                <input
+                  className={step1Errors.name ? FORM.inputError : FORM.input}
+                  id="name"
+                  value={form.name}
+                  onChange={(e) => update("name", e.target.value)}
+                  placeholder="Your name"
+                  maxLength={100}
+                />
               </div>
               <FieldError show={step1Errors.name} message="Name is required" />
             </div>
             <div>
-              <label htmlFor="email" className={LABEL_CLASS}>Email</label>
+              <label htmlFor="email" className={FORM.label}>Email</label>
               <div className="relative">
-                <HiOutlineMail className={ICON_CLASS} />
-                <input className={step1Errors.email ? INPUT_ERROR_CLASS : INPUT_CLASS} type="email" id="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="email@example.com" maxLength={200} />
+                <HiOutlineMail className={FORM.icon} />
+                <input
+                  className={step1Errors.email ? FORM.inputError : FORM.input}
+                  type="email"
+                  id="email"
+                  value={form.email}
+                  onChange={(e) => update("email", e.target.value)}
+                  placeholder="email@example.com"
+                  maxLength={200}
+                />
               </div>
               <FieldError show={step1Errors.email} message={!form.email.trim() ? "Email is required" : "Enter a valid email"} />
             </div>
             <div>
-              <label htmlFor="businessName" className={LABEL_CLASS}>Business name</label>
+              <label htmlFor="businessName" className={FORM.label}>Business name</label>
               <div className="relative">
-                <HiOutlineOfficeBuilding className={ICON_CLASS} />
-                <input className={step1Errors.businessName ? INPUT_ERROR_CLASS : INPUT_CLASS} id="businessName" value={form.businessName} onChange={(e) => update("businessName", e.target.value)} placeholder="Company name" maxLength={150} />
+                <HiOutlineOfficeBuilding className={FORM.icon} />
+                <input
+                  className={step1Errors.businessName ? FORM.inputError : FORM.input}
+                  id="businessName"
+                  value={form.businessName}
+                  onChange={(e) => update("businessName", e.target.value)}
+                  placeholder="Company name"
+                  maxLength={150}
+                />
               </div>
               <FieldError show={step1Errors.businessName} message="Business name is required" />
             </div>
             <div>
-              <label htmlFor="location" className={LABEL_CLASS}>Business location</label>
+              <label htmlFor="location" className={FORM.label}>Business location</label>
               <div className="relative">
-                <HiOutlineLocationMarker className={ICON_CLASS} />
-                <input className={step1Errors.location ? INPUT_ERROR_CLASS : INPUT_CLASS} id="location" value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="City or region" maxLength={150} />
+                <HiOutlineLocationMarker className={FORM.icon} />
+                <input
+                  className={step1Errors.location ? FORM.inputError : FORM.input}
+                  id="location"
+                  value={form.location}
+                  onChange={(e) => update("location", e.target.value)}
+                  placeholder="City or region"
+                  maxLength={150}
+                />
               </div>
               <FieldError show={step1Errors.location} message="Location is required" />
             </div>
             <div>
-              <label className={LABEL_CLASS}>
-                <span className="inline-flex items-center gap-1.5"><HiOutlineBriefcase className="text-[#444]" /> Business type</span>
+              <label className={FORM.label}>
+                <span className="inline-flex items-center gap-1.5">
+                  <HiOutlineBriefcase className="text-[#444]" /> Business type
+                </span>
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                 {BUSINESS_OPTIONS.map((opt) => (
-                  <button key={opt.value} type="button" onClick={() => update("businessType", opt.value)} className={OPTION_BTN(form.businessType === opt.value)}>
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => update("businessType", opt.value)}
+                    className={FORM.optionBtn(form.businessType === opt.value)}
+                  >
                     {opt.label}
                   </button>
                 ))}
@@ -240,34 +275,66 @@ export default function GetStartedPage() {
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">Business description</h2>
             <div>
-              <label htmlFor="description" className={LABEL_CLASS}>What does your business do?</label>
+              <label htmlFor="description" className={FORM.label}>What does your business do?</label>
               <div className="relative">
-                <HiOutlineDocumentText className={TEXTAREA_ICON_CLASS} />
-                <textarea className={step2Errors.description ? TEXTAREA_ERROR_CLASS : TEXTAREA_CLASS} id="description" rows={3} value={form.description} onChange={(e) => update("description", e.target.value)} placeholder="Briefly describe what you do" maxLength={1000} />
+                <HiOutlineDocumentText className={FORM.textareaIcon} />
+                <textarea
+                  className={step2Errors.description ? FORM.textareaError : FORM.textarea}
+                  id="description"
+                  rows={3}
+                  value={form.description}
+                  onChange={(e) => update("description", e.target.value)}
+                  placeholder="Briefly describe what you do"
+                  maxLength={1000}
+                />
               </div>
               <FieldError show={step2Errors.description} message="Business description is required" />
             </div>
             <div>
-              <label htmlFor="services" className={LABEL_CLASS}>Services or products (one per line)</label>
+              <label htmlFor="services" className={FORM.label}>Services or products (one per line)</label>
               <div className="relative">
-                <HiOutlineViewGrid className={TEXTAREA_ICON_CLASS} />
-                <textarea className={step2Errors.services ? TEXTAREA_ERROR_CLASS : TEXTAREA_CLASS} id="services" rows={3} value={form.services.join("\n")} onChange={(e) => update("services", e.target.value.split("\n").map((s) => s.trim()).filter(Boolean))} placeholder="e.g. Consultations, Web development" maxLength={1000} />
+                <HiOutlineViewGrid className={FORM.textareaIcon} />
+                <textarea
+                  className={step2Errors.services ? FORM.textareaError : FORM.textarea}
+                  id="services"
+                  rows={3}
+                  value={form.services.join("\n")}
+                  onChange={(e) => update("services", e.target.value.split("\n").map((s) => s.trim()).filter(Boolean))}
+                  placeholder="e.g. Consultations, Web development"
+                  maxLength={1000}
+                />
               </div>
               <FieldError show={step2Errors.services} message="Add at least one service" />
             </div>
             <div>
-              <label htmlFor="customers" className={LABEL_CLASS}>Who are your typical customers?</label>
+              <label htmlFor="customers" className={FORM.label}>Who are your typical customers?</label>
               <div className="relative">
-                <HiOutlineUserGroup className={TEXTAREA_ICON_CLASS} />
-                <textarea className={step2Errors.customers ? TEXTAREA_ERROR_CLASS : TEXTAREA_CLASS} id="customers" rows={2} value={form.customers} onChange={(e) => update("customers", e.target.value)} placeholder="Describe your audience" maxLength={500} />
+                <HiOutlineUserGroup className={FORM.textareaIcon} />
+                <textarea
+                  className={step2Errors.customers ? FORM.textareaError : FORM.textarea}
+                  id="customers"
+                  rows={2}
+                  value={form.customers}
+                  onChange={(e) => update("customers", e.target.value)}
+                  placeholder="Describe your audience"
+                  maxLength={500}
+                />
               </div>
               <FieldError show={step2Errors.customers} message="Describe your customers" />
             </div>
             <div>
-              <label htmlFor="differentiation" className={LABEL_CLASS}>What makes your business different?</label>
+              <label htmlFor="differentiation" className={FORM.label}>What makes your business different?</label>
               <div className="relative">
-                <HiOutlineLightningBolt className={TEXTAREA_ICON_CLASS} />
-                <textarea className={step2Errors.differentiation ? TEXTAREA_ERROR_CLASS : TEXTAREA_CLASS} id="differentiation" rows={3} value={form.differentiation} onChange={(e) => update("differentiation", e.target.value)} placeholder="Your strengths, unique selling points" maxLength={500} />
+                <HiOutlineLightningBolt className={FORM.textareaIcon} />
+                <textarea
+                  className={step2Errors.differentiation ? FORM.textareaError : FORM.textarea}
+                  id="differentiation"
+                  rows={3}
+                  value={form.differentiation}
+                  onChange={(e) => update("differentiation", e.target.value)}
+                  placeholder="Your strengths, unique selling points"
+                  maxLength={500}
+                />
               </div>
               <FieldError show={step2Errors.differentiation} message="Tell us what makes you different" />
             </div>
@@ -278,40 +345,70 @@ export default function GetStartedPage() {
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">Website preferences</h2>
             <div>
-              <label className={LABEL_CLASS}>
-                <span className="inline-flex items-center gap-1.5"><HiOutlinePhotograph className="text-[#444]" /> Do you have a logo?</span>
+              <label className={FORM.label}>
+                <span className="inline-flex items-center gap-1.5">
+                  <HiOutlinePhotograph className="text-[#444]" /> Do you have a logo?
+                </span>
               </label>
               <div className="flex gap-4 mt-2">
-                <button type="button" onClick={() => update("hasLogo", true)} className={`px-4 py-2 rounded-xl border transition-all ${form.hasLogo ? "border-[#7C5CFF] bg-[#7C5CFF]/10 text-[#7C5CFF]" : "border-[#222] bg-[#141414] text-[#888]"}`}>
+                <button
+                  type="button"
+                  onClick={() => update("hasLogo", true)}
+                  className={FORM.optionBtn(form.hasLogo === true)}
+                >
                   Yes
                 </button>
-                <button type="button" onClick={() => update("hasLogo", false)} className={`px-4 py-2 rounded-xl border transition-all ${!form.hasLogo ? "border-[#7C5CFF] bg-[#7C5CFF]/10 text-[#7C5CFF]" : "border-[#222] bg-[#141414] text-[#888]"}`}>
+                <button
+                  type="button"
+                  onClick={() => update("hasLogo", false)}
+                  className={FORM.optionBtn(form.hasLogo === false)}
+                >
                   No
                 </button>
               </div>
             </div>
             <div>
-              <label htmlFor="brandColors" className={LABEL_CLASS}>Brand colors (optional)</label>
+              <label htmlFor="brandColors" className={FORM.label}>Brand colors (optional)</label>
               <div className="relative">
-                <HiOutlineColorSwatch className={ICON_CLASS} />
-                <input className={INPUT_CLASS} id="brandColors" value={form.brandColors ?? ""} onChange={(e) => update("brandColors", e.target.value)} placeholder="e.g. #7C5CFF, blue" maxLength={100} />
+                <HiOutlineColorSwatch className={FORM.icon} />
+                <input
+                  className={FORM.input}
+                  id="brandColors"
+                  value={form.brandColors ?? ""}
+                  onChange={(e) => update("brandColors", e.target.value)}
+                  placeholder="e.g. #7C5CFF, blue"
+                  maxLength={100}
+                />
               </div>
             </div>
             <div>
-              <label className={LABEL_CLASS}>Preferred website style</label>
+              <label className={FORM.label}>Preferred website style</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                 {STYLE_OPTIONS.map((opt) => (
-                  <button key={opt.value} type="button" onClick={() => update("stylePreference", opt.value)} className={OPTION_BTN(form.stylePreference === opt.value)}>
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => update("stylePreference", opt.value)}
+                    className={FORM.optionBtn(form.stylePreference === opt.value)}
+                  >
                     {opt.label}
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <label htmlFor="competitors" className={LABEL_CLASS}>Competitor websites (one URL per line, optional)</label>
+              <label htmlFor="competitors" className={FORM.label}>Competitor websites (one URL per line, optional)</label>
               <div className="relative">
-                <HiOutlineLink className={TEXTAREA_ICON_CLASS} />
-                <textarea className={TEXTAREA_CLASS} id="competitors" rows={2} value={(form.competitors ?? []).join("\n")} onChange={(e) => update("competitors", e.target.value.split("\n").map((s) => s.trim()).filter(Boolean))} placeholder="https://..." maxLength={500} />
+                <HiOutlineLink className={FORM.textareaIcon} />
+                <textarea
+                  className={FORM.textarea}
+                  id="competitors"
+                  rows={2}
+                  value={(form.competitors ?? []).join("\n")}
+                  onChange={(e) => update("competitors", e.target.value.split("\n").map((s) => s.trim()).filter(Boolean))}
+                  placeholder="https://..."
+                  maxLength={500}
+                />
               </div>
             </div>
           </div>
@@ -321,34 +418,64 @@ export default function GetStartedPage() {
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">Contact & final details</h2>
             <div>
-              <label htmlFor="phone" className={LABEL_CLASS}>Phone (optional)</label>
+              <label htmlFor="phone" className={FORM.label}>Phone (optional)</label>
               <div className="relative">
-                <HiOutlinePhone className={ICON_CLASS} />
-                <input className={INPUT_CLASS} id="phone" type="tel" value={form.phone ?? ""} onChange={(e) => update("phone", e.target.value)} placeholder="+1..." maxLength={20} />
+                <HiOutlinePhone className={FORM.icon} />
+                <input
+                  className={FORM.input}
+                  id="phone"
+                  type="tel"
+                  value={form.phone ?? ""}
+                  onChange={(e) => update("phone", e.target.value)}
+                  placeholder="+1..."
+                  maxLength={20}
+                />
               </div>
             </div>
             <div>
-              <label htmlFor="instagram" className={LABEL_CLASS}>Instagram (optional)</label>
+              <label htmlFor="instagram" className={FORM.label}>Instagram (optional)</label>
               <div className="relative">
-                <HiOutlinePhotograph className={ICON_CLASS} />
-                <input className={INPUT_CLASS} id="instagram" value={form.instagram ?? ""} onChange={(e) => update("instagram", e.target.value)} placeholder="@username" maxLength={50} />
+                <HiOutlinePhotograph className={FORM.icon} />
+                <input
+                  className={FORM.input}
+                  id="instagram"
+                  value={form.instagram ?? ""}
+                  onChange={(e) => update("instagram", e.target.value)}
+                  placeholder="@username"
+                  maxLength={50}
+                />
               </div>
             </div>
             <div>
-              <label htmlFor="website" className={LABEL_CLASS}>Existing website (optional)</label>
+              <label htmlFor="website" className={FORM.label}>Existing website (optional)</label>
               <div className="relative">
-                <HiOutlineGlobe className={ICON_CLASS} />
-                <input className={INPUT_CLASS} id="website" type="url" value={form.website ?? ""} onChange={(e) => update("website", e.target.value)} placeholder="https://..." maxLength={300} />
+                <HiOutlineGlobe className={FORM.icon} />
+                <input
+                  className={FORM.input}
+                  id="website"
+                  type="url"
+                  value={form.website ?? ""}
+                  onChange={(e) => update("website", e.target.value)}
+                  placeholder="https://..."
+                  maxLength={300}
+                />
               </div>
             </div>
             <div>
-              <label htmlFor="notes" className={LABEL_CLASS}>Additional notes</label>
+              <label htmlFor="notes" className={FORM.label}>Additional notes</label>
               <div className="relative">
-                <HiOutlinePencil className={TEXTAREA_ICON_CLASS} />
-                <textarea className={TEXTAREA_CLASS} id="notes" rows={4} value={form.notes} onChange={(e) => update("notes", e.target.value)} placeholder="Anything else we should know?" maxLength={1000} />
+                <HiOutlinePencil className={FORM.textareaIcon} />
+                <textarea
+                  className={FORM.textarea}
+                  id="notes"
+                  rows={4}
+                  value={form.notes}
+                  onChange={(e) => update("notes", e.target.value)}
+                  placeholder="Anything else we should know?"
+                  maxLength={1000}
+                />
               </div>
             </div>
-            {/* Honeypot — hidden from real users */}
             <input
               type="text"
               name="company"
@@ -362,21 +489,39 @@ export default function GetStartedPage() {
           </div>
         )}
 
-        <div className="flex gap-4 mt-10">
+        <div className="flex flex-wrap gap-3 mt-10 items-center">
           {step > 1 && (
-            <button type="button" onClick={handleBack} className="px-6 py-3 rounded-full border border-[#222] text-[#888] hover:border-[#444] hover:text-white transition-all">
+            <button type="button" onClick={handleBack} className={FORM.btnSecondary}>
               Back
             </button>
           )}
-          <div className="flex-1" />
+          <div className="flex-1 min-w-[1rem]" />
           {step < 4 ? (
-            <button type="button" onClick={handleNext} disabled={!canNext() && touched} className="bg-[#7C5CFF] px-8 py-3 rounded-full font-semibold transition-all hover:bg-[#6B4FE0] disabled:opacity-50 disabled:cursor-not-allowed">
+            <button
+              type="button"
+              onClick={handleNext}
+              disabled={!canNext()}
+              className={FORM.btnPrimary}
+            >
               Next
             </button>
           ) : (
-            <button type="button" onClick={handleSubmit} disabled={isSubmitting} className="bg-[#7C5CFF] px-8 py-3 rounded-full font-semibold transition-all hover:bg-[#6B4FE0] disabled:opacity-50 disabled:cursor-not-allowed">
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </button>
+            <>
+              <button
+                type="button"
+                onClick={() => {
+                  saveLeadFormForPreview(form);
+                  router.push("/get-started/preview");
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-[#7C5CFF]/50 bg-[#7C5CFF]/10 px-5 py-3 text-sm font-semibold text-[#C4B5FD] transition hover:bg-[#7C5CFF]/20 hover:border-[#7C5CFF]/70"
+              >
+                <HiOutlineDevicePhoneMobile className="text-lg" aria-hidden />
+                View site preview
+              </button>
+              <button type="button" onClick={handleSubmit} disabled={isSubmitting} className={FORM.btnPrimary}>
+                {isSubmitting ? "Submitting…" : "Submit"}
+              </button>
+            </>
           )}
         </div>
       </div>

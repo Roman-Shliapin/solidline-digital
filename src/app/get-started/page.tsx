@@ -9,6 +9,7 @@ import type { BusinessType, LeadFormData, StylePreference } from "@/types/lead";
 import { FORM } from "@/styles/forms";
 import { useT } from "@/hooks/useT";
 import PhoneField from "@/components/PhoneField";
+import LanguageSwitcher from "@/components/i18n/LanguageSwitcher";
 
 const BUSINESS_OPTIONS: { value: BusinessType; labelKey: string }[] = [
   { value: "local-service", labelKey: "form.businessTypes.local-service" },
@@ -156,9 +157,12 @@ export default function GetStartedPage() {
         <Link href="/" className="font-bold text-lg transition-colors duration-300 hover:text-[#7C5CFF]">
           {t("common.brand")}
         </Link>
-        <Link href="/" className={FORM.btnSecondary}>
-          {t("common.home")}
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/" className={`${FORM.btnSecondary} hidden sm:inline-flex`}>
+            {t("common.home")}
+          </Link>
+          <LanguageSwitcher mode="inline" />
+        </div>
       </div>
 
       <div className="max-w-xl mx-auto py-16 px-6">

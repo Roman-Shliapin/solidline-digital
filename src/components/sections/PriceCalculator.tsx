@@ -123,7 +123,7 @@ const PriceCalculator = () => {
                                                     onChange={() => cat.type === "radio" ? handleRadio(cat.id, opt.id) : handleCheckbox(cat.id, opt.id)}
                                                     className="hidden"
                                                 />
-                                                <span className={`w-5 h-5 rounded-${cat.type === "radio" ? "full" : "md"} border-2 flex items-center justify-center transition-colors duration-300 ${isSelected ? "border-[#7C5CFF] bg-[#7C5CFF]" : "border-[#444]"}`}>
+                                                <span className={`w-5 h-5 rounded-[4px] border-2 flex items-center justify-center transition-colors duration-300 ${isSelected ? "border-[#7C5CFF] bg-[#7C5CFF]" : "border-[#444]"}`}>
                                                     {isSelected && (
                                                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                                             <path d="M2.5 6L5 8.5L9.5 3.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

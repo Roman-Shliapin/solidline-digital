@@ -1,0 +1,209 @@
+{
+  "common": {
+    "brand": "SolidLine Digital",
+    "home": "Home"
+  },
+  "hero": {
+    "brand": "SolidLine Digital",
+    "title": "Simple Websites That Bring Real Clients",
+    "subtitle": "We build clean, fast websites for small businesses that want clarity, structure, and results — not unnecessary complexity.",
+    "cta": "start your project"
+  },
+  "form": {
+    "pageTitle": "Get started",
+    "step": "Step",
+    "basicTitle": "Basic information",
+    "step2Title": "Business description",
+    "step3Title": "Optional details",
+    "continue": "Continue",
+    "back": "Back",
+    "create": "Create my website",
+    "required": "*",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "businessName": "Business name",
+      "businessType": "Business type",
+      "description": "What does your business do?",
+      "services": "Services (optional)",
+      "customers": "Customers (optional)",
+      "stylePreference": "Style preference (optional)",
+      "phone": "Phone (optional)",
+      "instagram": "Instagram (optional)",
+      "website": "Website (optional)"
+    },
+    "placeholders": {
+      "name": "Your name",
+      "email": "email@example.com",
+      "businessName": "Company name",
+      "description": "e.g. We are a small coffee shop in Warsaw serving specialty coffee",
+      "services": "e.g. Consultations, Web development",
+      "customers": "e.g. Startups looking for a modern landing page",
+      "phone": "+1...",
+      "instagram": "@username",
+      "website": "https://..."
+    },
+    "businessTypes": {
+      "local-service": "Local service",
+      "online-business": "Online business",
+      "personal-brand": "Personal brand",
+      "small-company": "Company"
+    },
+    "styles": {
+      "modern": "Modern",
+      "minimal": "Minimal",
+      "bold": "Bold",
+      "unsure": "Not sure"
+    },
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "businessNameRequired": "Business name is required",
+      "businessTypeRequired": "Select a business type",
+      "descriptionRequired": "Business description is required",
+      "submitFailed": "Something went wrong. Please try again.",
+      "networkError": "Network error. Check your connection."
+    },
+    "submitting": "Submitting..."
+  },
+  "thankyou": {
+    "title": "Your request is in!",
+    "subtitle": "We’re already working on your website concept.",
+    "progressTitle": "Progress",
+    "progressReceived": "Request received",
+    "progressDesign": "Design in progress",
+    "progressDelivery": "Delivery soon",
+    "nextTitle": "What happens next",
+    "next1": "We review your request",
+    "next2": "We create a custom website concept",
+    "next3": "You’ll receive it within 24 hours",
+    "qualityTitle": "A quick note on quality",
+    "qualityText1": "We don’t use generic templates.",
+    "qualityText2": "Your website will be tailored specifically to your business.",
+    "contactTitle": "We’ve received your request.",
+    "contactText": "If you’d like to add anything — just reply to our email when we contact you.",
+    "email": "hello@solidline.dev",
+    "questionsPrefix": "Questions?",
+    "fasterTitle": "Want a faster response?",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "backHome": "← Back to homepage"
+  },
+  "nav": {
+    "services": "services",
+    "pricing": "pricing",
+    "portfolio": "portfolio",
+    "about": "about",
+    "getStarted": "get started"
+  },
+  "footer": {
+    "contactLabel": "contact",
+    "email": "hello@solidline.dev"
+  },
+  "sections": {
+    "services": {
+      "title": "what we do",
+      "subtitle": "we focus on practical digital tools that help small businesses get and manage real client inquiries.",
+      "items": {
+        "businessWebsites": {
+          "title": "business websites",
+          "description": "clean, fast one-page websites designed to present your business clearly and professionally. built for clarity, speed, and mobile users."
+        },
+        "leadCapture": {
+          "title": "lead capture setup",
+          "description": "structured contact forms and clear call-to-actions that make it easy for potential clients to reach you."
+        },
+        "telegramNotifications": {
+          "title": "telegram & instant notifications",
+          "description": "we connect your website to telegram or email so you receive new inquiries instantly — no manual checking, no missed messages."
+        },
+        "websiteOptimization": {
+          "title": "website optimization",
+          "description": "we improve existing websites by simplifying structure, improving performance, and making them more conversion-focused."
+        }
+      }
+    },
+    "about": {
+      "title": "about SolidLine Digital",
+      "p1": "solidline digital is a small, focused web studio built around a simple idea — most small businesses don't need complex systems. they need clarity, structure, and a website that actually works.",
+      "p2": "we build clean, fast websites and set up simple automation so business owners can focus on their work instead of chasing messages or fixing technical problems.",
+      "quote": "no inflated promises. no unnecessary features. just practical solutions that make sense."
+    },
+    "contact": {
+      "title": "let's talk about your project",
+      "p1": "tell us a bit about your business and what you're looking to build. we'll get back to you within 24 hours.",
+      "p2": "no pressure. no complicated process. just a short form and we'll take it from there.",
+      "cta": "get started"
+    },
+    "portfolio": {
+      "title": "our work",
+      "subtitle": "clean, fast websites for small businesses — no fluff, just results.",
+      "items": {
+        "beautyStudio": {
+          "title": "Beauty Studio",
+          "category": "Beauty",
+          "description": "Luxury beauty salon website with booking integration"
+        },
+        "coffeeHouse": {
+          "title": "Coffee House",
+          "category": "Food & Drink",
+          "description": "Cozy cafe with menu and location"
+        },
+        "fitnessCoach": {
+          "title": "Fitness Coach",
+          "category": "Health",
+          "description": "Personal training and nutrition services"
+        },
+        "lawOffice": {
+          "title": "Law Office",
+          "category": "Legal",
+          "description": "Professional law firm with practice areas"
+        },
+        "dentalClinic": {
+          "title": "Dental Clinic",
+          "category": "Healthcare",
+          "description": "Modern dental practice with services"
+        },
+        "architectureStudio": {
+          "title": "Architecture Studio",
+          "category": "Design",
+          "description": "Portfolio of architectural projects"
+        }
+      }
+    },
+    "pricing": {
+      "title": "Get your website price in 30 seconds",
+      "subtitle": "No commitment. Just a quick estimate.",
+      "microcopy": "Select what you need and get an instant estimate",
+      "estimatedPriceLabel": "Estimated price",
+      "estimatedPriceFrom": "Starting from",
+      "estimatedPriceDependsOn": "Final price depends on your needs.",
+      "ctaStrong": "Get my website",
+      "trustText": "We’ll contact you within 24 hours",
+      "categories": {
+        "websiteType": { "title": "Website type" },
+        "design": { "title": "Design setup" },
+        "features": { "title": "Included features" },
+        "support": { "title": "Ongoing support" },
+        "delivery": { "title": "Delivery speed" }
+      },
+      "options": {
+        "landingPage": "Landing page",
+        "multiPageWebsite": "Business website (multiple pages)",
+        "ecommerce": "Online store",
+        "templateBased": "Fast setup (recommended)",
+        "customDesign": "Unique custom design",
+        "contactForm": "Contact Form",
+        "telegramBot": "Telegram Bot",
+        "seoOptimization": "SEO Optimization",
+        "analyticsSetup": "Analytics Setup",
+        "noSupport": "No ongoing support",
+        "monthlySupport": "Monthly support",
+        "standard": "Standard",
+        "rushTwoWeeks": "Rush (2 weeks)"
+      }
+    }
+  }
+}
+

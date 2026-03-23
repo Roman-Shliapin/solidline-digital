@@ -3,8 +3,10 @@
 import Link from "next/link";
 import useInView from "@/hooks/useInView";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
+import { useT } from "@/hooks/useT";
 
 const Contact = () => {
+  const t = useT();
   const { ref, isInView } = useInView();
 
   return (
@@ -15,14 +17,14 @@ const Contact = () => {
     >
       <div className="max-w-xl mx-auto px-6 text-center">
         <HiOutlineChatAlt2 className="text-[#7C5CFF] text-4xl mb-4 mx-auto" />
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">let&apos;s talk about your project</h2>
-        <p className="text-[#888] mb-6">tell us a bit about your business and what you&apos;re looking to build. we&apos;ll get back to you within 24 hours.</p>
-        <p className="text-[#888] mb-10">no pressure. no complicated process. just a short form and we&apos;ll take it from there.</p>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("sections.contact.title")}</h2>
+        <p className="text-[#888] mb-6">{t("sections.contact.p1")}</p>
+        <p className="text-[#888] mb-10">{t("sections.contact.p2")}</p>
         <Link
           href="/get-started"
           className="inline-block bg-[#7C5CFF] px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-[#6B4FE0] hover:-translate-y-0.5 shadow-lg shadow-[#7C5CFF]/20"
         >
-          get started
+          {t("sections.contact.cta")}
         </Link>
       </div>
     </section>

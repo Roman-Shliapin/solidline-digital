@@ -1,0 +1,209 @@
+{
+  "common": {
+    "brand": "SolidLine Digital",
+    "home": "Home"
+  },
+  "hero": {
+    "brand": "SolidLine Digital",
+    "title": "Proste strony, które przynoszą realnych klientów",
+    "subtitle": "Tworzymy czyste, szybkie strony dla małych firm. Liczy się klarowność, struktura i wyniki — bez zbędnego skomplikowania.",
+    "cta": "zacznij swój projekt"
+  },
+  "form": {
+    "pageTitle": "Rozpocznij",
+    "step": "Krok",
+    "basicTitle": "Podstawowe informacje",
+    "step2Title": "Opis Twojej firmy",
+    "step3Title": "Dodatkowe informacje (opcjonalnie)",
+    "continue": "Dalej",
+    "back": "Wstecz",
+    "create": "Utwórz moją stronę",
+    "required": "*",
+    "labels": {
+      "name": "Imię",
+      "email": "Email",
+      "businessName": "Nazwa firmy",
+      "businessType": "Rodzaj działalności",
+      "description": "Co robi Twoja firma?",
+      "services": "Usługi (opcjonalnie)",
+      "customers": "Klienci (opcjonalnie)",
+      "stylePreference": "Preferencja stylu (opcjonalnie)",
+      "phone": "Telefon (opcjonalnie)",
+      "instagram": "Instagram (opcjonalnie)",
+      "website": "Strona (opcjonalnie)"
+    },
+    "placeholders": {
+      "name": "Twoje imię",
+      "email": "email@example.com",
+      "businessName": "Nazwa firmy",
+      "description": "np. Jesteśmy małą kawiarnią w Warszawie serwującą specialty coffee",
+      "services": "np. Konsultacje, tworzenie stron",
+      "customers": "np. Startupy szukające nowoczesnej strony landing",
+      "phone": "+1...",
+      "instagram": "@username",
+      "website": "https://..."
+    },
+    "businessTypes": {
+      "local-service": "Lokalne usługi",
+      "online-business": "Biznes online",
+      "personal-brand": "Marka osobista",
+      "small-company": "Firma"
+    },
+    "styles": {
+      "modern": "Nowoczesny",
+      "minimal": "Minimalny",
+      "bold": "Odważny",
+      "unsure": "Nie wiem"
+    },
+    "errors": {
+      "nameRequired": "Imię jest wymagane",
+      "emailRequired": "Email jest wymagany",
+      "emailInvalid": "Wpisz poprawny email",
+      "businessNameRequired": "Nazwa firmy jest wymagana",
+      "businessTypeRequired": "Wybierz rodzaj działalności",
+      "descriptionRequired": "Opis firmy jest wymagany",
+      "submitFailed": "Coś poszło nie tak. Spróbuj ponownie.",
+      "networkError": "Błąd sieci. Sprawdź połączenie."
+    },
+    "submitting": "Wysyłanie..."
+  },
+  "thankyou": {
+    "title": "Twoja prośba jest w trakcie!",
+    "subtitle": "Jesteśmy już w trakcie przygotowywania koncepcji Twojej strony.",
+    "progressTitle": "Postęp",
+    "progressReceived": "Otrzymano prośbę",
+    "progressDesign": "Projekt w toku",
+    "progressDelivery": "Wkrótce dostarczymy",
+    "nextTitle": "Co dalej?",
+    "next1": "Sprawdzamy Twoją prośbę",
+    "next2": "Tworzymy dopasowaną koncepcję strony",
+    "next3": "Otrzymasz ją w ciągu 24 godzin",
+    "qualityTitle": "Krótka informacja o jakości",
+    "qualityText1": "Nie używamy szablonów „z internetu”.",
+    "qualityText2": "Twoja strona będzie dopasowana do Twojej firmy.",
+    "contactTitle": "Otrzymaliśmy Twoją prośbę.",
+    "contactText": "Jeśli chcesz dodać coś jeszcze — odpisz na nasz email, kiedy się odezwiemy.",
+    "email": "hello@solidline.dev",
+    "questionsPrefix": "Pytania?",
+    "fasterTitle": "Chcesz szybszej odpowiedzi?",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "backHome": "← Wróć na stronę główną"
+  },
+  "nav": {
+    "services": "usługi",
+    "pricing": "cennik",
+    "portfolio": "portfolio",
+    "about": "o nas",
+    "getStarted": "zaczynajmy"
+  },
+  "footer": {
+    "contactLabel": "kontakt",
+    "email": "hello@solidline.dev"
+  },
+  "sections": {
+    "services": {
+      "title": "co robimy",
+      "subtitle": "stawiamy na praktyczne narzędzia cyfrowe, które pomagają małym firmom pozyskiwać i obsługiwać realne zapytania od klientów.",
+      "items": {
+        "businessWebsites": {
+          "title": "strony firmowe",
+          "description": "czyste, szybkie strony one-page zaprojektowane, żeby pokazać Twoją firmę jasno i profesjonalnie. powstały z myślą o klarowności, szybkości i użytkownikach mobilnych."
+        },
+        "leadCapture": {
+          "title": "konfiguracja pozyskiwania leadów",
+          "description": "uporządkowane formularze kontaktowe i czytelne wezwania do działania, dzięki którym potencjalni klienci łatwo do Ciebie dotrą."
+        },
+        "telegramNotifications": {
+          "title": "telegram i natychmiastowe powiadomienia",
+          "description": "podłączamy Twoją stronę do Telegrama lub e-maila, aby nowe zapytania przychodziły od razu — bez ręcznego sprawdzania i bez ryzyka, że wiadomość przepadnie."
+        },
+        "websiteOptimization": {
+          "title": "optymalizacja strony",
+          "description": "ulepszamy istniejące strony: upraszczamy strukturę, poprawiamy wydajność i skupiamy się na konwersji."
+        }
+      }
+    },
+    "about": {
+      "title": "o SolidLine Digital",
+      "p1": "solidline digital to małe, skupione studio webowe o prostej idei — większość małych firm nie potrzebuje skomplikowanych systemów. potrzebuje klarowności, struktury i strony, która naprawdę działa.",
+      "p2": "tworzymy czyste, szybkie strony i wdrażamy proste automatyzacje, żeby właściciele firm mogli skupić się na swojej pracy zamiast gonić wiadomości lub walczyć z problemami technicznymi.",
+      "quote": "bez przesadzonych obietnic. bez zbędnych funkcji. tylko praktyczne rozwiązania."
+    },
+    "contact": {
+      "title": "porozmawiajmy o Twoim projekcie",
+      "p1": "opowiedz nam trochę o swojej firmie i o tym, co chcesz zbudować. odezwiemy się w ciągu 24 godzin.",
+      "p2": "bez presji. bez skomplikowanego procesu. krótki formularz i przejmujemy to dalej.",
+      "cta": "zaczynajmy"
+    },
+    "portfolio": {
+      "title": "nasze realizacje",
+      "subtitle": "czyste, szybkie strony dla małych firm — bez lania wody, tylko efekty.",
+      "items": {
+        "beautyStudio": {
+          "title": "Beauty Studio",
+          "category": "Uroda",
+          "description": "Strona luksusowego salonu beauty z integracją rezerwacji"
+        },
+        "coffeeHouse": {
+          "title": "Coffee House",
+          "category": "Jedzenie i napoje",
+          "description": "Przytulna kawiarnia z menu i lokalizacją"
+        },
+        "fitnessCoach": {
+          "title": "Fitness Coach",
+          "category": "Zdrowie",
+          "description": "Trening personalny i usługi z zakresu odżywiania"
+        },
+        "lawOffice": {
+          "title": "Law Office",
+          "category": "Prawo",
+          "description": "Profesjonalna kancelaria z obszarami praktyki"
+        },
+        "dentalClinic": {
+          "title": "Dental Clinic",
+          "category": "Medycyna",
+          "description": "Nowoczesna klinika stomatologiczna z usługami"
+        },
+        "architectureStudio": {
+          "title": "Architecture Studio",
+          "category": "Design",
+          "description": "Portfolio projektów architektonicznych"
+        }
+      }
+    },
+    "pricing": {
+      "title": "Wycena Twojej strony za 30 sekund",
+      "subtitle": "Bez zobowiązań. Tylko szybka wycena.",
+      "microcopy": "Wybierz to, czego potrzebujesz, i dostaniesz natychmiastową estymację",
+      "estimatedPriceLabel": "Szacunkowa cena",
+      "estimatedPriceFrom": "Od",
+      "estimatedPriceDependsOn": "Ostateczna cena zależy od Twoich potrzeb.",
+      "ctaStrong": "Zamów wycenę",
+      "trustText": "Skontaktujemy się z Tobą w ciągu 24 godzin",
+      "categories": {
+        "websiteType": { "title": "Typ strony" },
+        "design": { "title": "Ustawienie projektu" },
+        "features": { "title": "funkcje" },
+        "support": { "title": "Wsparcie" },
+        "delivery": { "title": "Czas realizacji" }
+      },
+      "options": {
+        "landingPage": "Landing page",
+        "multiPageWebsite": "Strona firmowa (wiele podstron)",
+        "ecommerce": "Sklep online",
+        "templateBased": "Szybka realizacja (rekomendowane)",
+        "customDesign": "Indywidualny projekt",
+        "contactForm": "Formularz kontaktowy",
+        "telegramBot": "Bot Telegram",
+        "seoOptimization": "Optymalizacja SEO",
+        "analyticsSetup": "Konfiguracja analityki",
+        "noSupport": "Brak wsparcia na bieżąco",
+        "monthlySupport": "Wsparcie miesięczne",
+        "standard": "Standard",
+        "rushTwoWeeks": "Realizacja ekspresowa (2 tyg.)"
+      }
+    }
+  }
+}
+

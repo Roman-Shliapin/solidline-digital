@@ -5,15 +5,10 @@ const answersSchema = new Schema(
     description: String,
     services: [String],
     customers: String,
-    differentiation: String,
-    hasLogo: Boolean,
-    brandColors: String,
     stylePreference: String,
-    competitors: [String],
     phone: String,
     instagram: String,
     website: String,
-    notes: String,
   },
   { _id: false }
 );
@@ -33,7 +28,7 @@ const leadSchema = new Schema(
     name: { type: String, required: true },
     email: { type: String, required: true },
     businessName: { type: String, required: true },
-    location: { type: String, required: true },
+    location: { type: String, required: false },
     businessType: {
       type: String,
       required: true,

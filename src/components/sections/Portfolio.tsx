@@ -4,6 +4,7 @@ import { useState } from "react";
 import useInView from "@/hooks/useInView";
 import { portfolio } from "@/data/portfolio";
 import Image from "next/image";
+import { useT } from "@/hooks/useT";
 
 function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +27,7 @@ function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
 }
 
 const Portfolio = () => {
+  const t = useT();
   const { ref, isInView } = useInView();
 
   return (
@@ -35,10 +37,8 @@ const Portfolio = () => {
       className={`py-24 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
     >
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">our work</h2>
-        <p className="text-[#888] max-w-xl mb-12">
-          clean, fast websites for small businesses — no fluff, just results.
-        </p>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("sections.portfolio.title")}</h2>
+        <p className="text-[#888] max-w-xl mb-12">{t("sections.portfolio.subtitle")}</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolio.map((item) => (
             <a
@@ -47,14 +47,14 @@ const Portfolio = () => {
               className="group block bg-gradient-to-br from-[#141414] to-[#0E0E0E] border border-[#222] rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#7C5CFF]/50 hover:shadow-lg hover:shadow-[#7C5CFF]/5"
             >
               <div className="aspect-[4/3] relative overflow-hidden">
-                <ImageWithSkeleton src={item.image} alt={item.title} />
+                <ImageWithSkeleton src={item.image} alt={t(item.titleKey)} />
                 <span className="absolute top-3 left-3 bg-[#0A0A0A]/90 px-2 py-1 rounded text-xs text-[#7C5CFF] font-medium">
-                  {item.category}
+                  {t(item.categoryKey)}
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="font-semibold mb-2 group-hover:text-[#7C5CFF] transition-colors">{item.title}</h3>
-                <p className="text-sm text-[#888]">{item.description}</p>
+                <h3 className="font-semibold mb-2 group-hover:text-[#7C5CFF] transition-colors">{t(item.titleKey)}</h3>
+                <p className="text-sm text-[#888]">{t(item.descriptionKey)}</p>
               </div>
             </a>
           ))}

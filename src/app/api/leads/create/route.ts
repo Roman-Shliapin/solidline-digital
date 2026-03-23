@@ -27,9 +27,10 @@ const VALID_STYLES = ["modern", "minimal", "bold", "unsure"];
 const MAX = { short: 200, medium: 500, long: 1000 } as const;
 
 function trimStr(v: unknown): string {
-  return (typeof v === "string" ? v : "").trim();
+  return typeof v === "string" ? v.trim() : "";
 }
 function sanitize(v: unknown): string {
+  // Very small sanitization: strip tags and disallow angle brackets
   return trimStr(v).replace(/[<>]/g, "");
 }
 function cap(str: string, max: number): string {
@@ -53,6 +54,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Empty or invalid body" }, { status: 400 });
     }
 
+    // Honeypot bot trap
     if (trimStr(body.company)) {
       return NextResponse.json({ message: "Lead created", id: "ok" });
     }
@@ -60,32 +62,39 @@ export async function POST(req: Request) {
     const nameS = cap(sanitize(body.name), MAX.short);
     const emailS = cap(trimStr(body.email), MAX.short);
     const businessNameS = cap(sanitize(body.businessName), MAX.short);
-    const locationS = cap(sanitize(body.location), MAX.short);
-    const descriptionS = cap(sanitize(body.description), MAX.long);
-    const customersS = cap(sanitize(body.customers), MAX.medium);
-    const differentiationS = cap(sanitize(body.differentiation), MAX.medium);
+    const descriptionS = cap(sanitize(body.description), MAX.medium);
 
-    if (!nameS || !emailS || !businessNameS || !locationS) {
-      return NextResponse.json({ error: "Fill in required step 1 fields" }, { status: 400 });
+    if (!nameS || !emailS || !businessNameS || !descriptionS) {
+      return NextResponse.json(
+        { error: "Fill in required fields (name, email, business name, description)." },
+        { status: 400 },
+      );
     }
     if (!EMAIL_RE.test(emailS)) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
-    const { businessType, services, hasLogo, stylePreference, competitors } = body;
+    const { businessType, services, customers, stylePreference, phone, instagram, website } = body;
 
     if (typeof businessType !== "string" || !VALID_BUSINESS_TYPES.includes(businessType)) {
       return NextResponse.json({ error: "Invalid business type" }, { status: 400 });
     }
 
     const servicesArr = Array.isArray(services)
-      ? services.map((s) => cap(sanitize(s), MAX.short)).filter(Boolean).slice(0, 20)
+      ? services
+          .map((s) => cap(sanitize(s), MAX.short))
+          .filter(Boolean)
+          .slice(0, 20)
       : [];
-    if (!descriptionS || servicesArr.length === 0 || !customersS || !differentiationS) {
-      return NextResponse.json({ error: "Fill in required step 2 fields" }, { status: 400 });
-    }
 
-    const stylePref = typeof stylePreference === "string" && VALID_STYLES.includes(stylePreference) ? stylePreference : "modern";
+    const customersS = cap(sanitize(customers), MAX.medium) || undefined;
+
+    const stylePref =
+      typeof stylePreference === "string" && VALID_STYLES.includes(stylePreference) ? stylePreference : "modern";
+
+    const phoneS = cap(sanitize(phone), 20) || undefined;
+    const instagramS = cap(sanitize(instagram), 50) || undefined;
+    const websiteS = cap(trimStr(website), 300) || undefined;
 
     await dbConnect();
 
@@ -93,23 +102,15 @@ export async function POST(req: Request) {
       name: nameS,
       email: emailS,
       businessName: businessNameS,
-      location: locationS,
       businessType,
       answers: {
         description: descriptionS,
         services: servicesArr,
         customers: customersS,
-        differentiation: differentiationS,
-        hasLogo: Boolean(hasLogo),
-        brandColors: cap(sanitize(body.brandColors), MAX.short) || undefined,
         stylePreference: stylePref,
-        competitors: Array.isArray(competitors)
-          ? competitors.map((s) => cap(trimStr(s), MAX.short)).filter(Boolean).slice(0, 10)
-          : undefined,
-        phone: cap(sanitize(body.phone), 20) || undefined,
-        instagram: cap(sanitize(body.instagram), 50) || undefined,
-        website: cap(trimStr(body.website), 300) || undefined,
-        notes: cap(sanitize(body.notes), MAX.long) || undefined,
+        phone: phoneS,
+        instagram: instagramS,
+        website: websiteS,
       },
     });
 
@@ -118,7 +119,7 @@ export async function POST(req: Request) {
     if (TELEGRAM_TOKEN && CHAT_ID) {
       const ans = lead.answers as Record<string, unknown> | undefined;
       const svcList = Array.isArray(ans?.services) ? ans.services : [];
-      const svcText = svcList.length > 0 ? svcList.map((s) => `• ${s}`).join("\n") : "—";
+      const svcText = svcList.length > 0 ? svcList.map((s) => `• ${String(s)}`).join("\n") : "—";
 
       const lines = [
         "🚀 New Lead — Get Started",
@@ -126,11 +127,11 @@ export async function POST(req: Request) {
         "",
         "👤 " + String(lead.name),
         "🏢 " + String(lead.businessName),
-        "📍 " + String(lead.location) + ` (${String(lead.businessType).replace(/-/g, " ")})`,
         "",
         "📧 " + String(lead.email),
         ...(ans?.phone ? ["📱 " + String(ans.phone)] : []),
         ...(ans?.instagram ? ["📷 @" + String(ans.instagram).replace(/^@/, "")] : []),
+        ...(ans?.website ? ["🌐 " + String(ans.website)] : []),
         "",
         "💼 Services:",
         svcText,
@@ -138,16 +139,9 @@ export async function POST(req: Request) {
         "📝 Description:",
         String(ans?.description ?? "—"),
         "",
-        "🎯 Target customers:",
+        "👥 Customers:",
         String(ans?.customers ?? "—"),
-        "",
-        "✨ What makes them different:",
-        String(ans?.differentiation ?? "—"),
-        ...(ans?.stylePreference ? ["", "🎨 Style: " + String(ans.stylePreference)] : []),
-        ...(ans?.hasLogo ? ["🖼 Logo: Yes"] : []),
-        ...(ans?.brandColors ? ["🌈 Colors: " + String(ans.brandColors)] : []),
-        ...(ans?.website ? ["🌐 " + String(ans.website)] : []),
-        ...(ans?.notes ? ["", "📎 Notes: " + String(ans.notes)] : []),
+        ...(ans?.stylePreference ? ["🎨 Style: " + String(ans.stylePreference)] : []),
       ];
 
       await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
@@ -163,3 +157,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Failed to save lead" }, { status: 500 });
   }
 }
+

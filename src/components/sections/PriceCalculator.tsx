@@ -77,18 +77,18 @@ const PriceCalculator = () => {
     return (
         <section ref={ref} id="pricing" className={`py-24 bg-gradient-to-b from-[#0A0A0A] via-[#111] to-[#0A0A0A] transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <div className="max-w-4xl mx-auto px-6">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
                     <HiOutlineCalculator className="text-[#7C5CFF] text-4xl" />
-                    <div className="flex bg-[#141414] border border-[#222] rounded-full p-1">
+                    <div className="w-full sm:w-auto grid grid-cols-2 bg-[#141414] border border-[#222] rounded-full p-1">
                         <button
                             onClick={() => setCurrency("PLN")}
-                            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${currency === "PLN" ? "bg-[#7C5CFF] text-white" : "text-[#888] hover:text-[#F5F5F5]"}`}
+                            className={`w-full px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${currency === "PLN" ? "bg-[#7C5CFF] text-white" : "text-[#888] hover:text-[#F5F5F5]"}`}
                         >
                             PLN (zł)
                         </button>
                         <button
                             onClick={() => setCurrency("EUR")}
-                            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${currency === "EUR" ? "bg-[#7C5CFF] text-white" : "text-[#888] hover:text-[#F5F5F5]"}`}
+                            className={`w-full px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${currency === "EUR" ? "bg-[#7C5CFF] text-white" : "text-[#888] hover:text-[#F5F5F5]"}`}
                         >
                             EUR (€)
                         </button>
@@ -154,7 +154,7 @@ const PriceCalculator = () => {
                     <div className="flex flex-col gap-6">
                         <div>
                             <p className="text-[#888] text-sm mb-2">{t("sections.pricing.estimatedPriceLabel")}</p>
-                            <p className="text-5xl font-bold text-[#7C5CFF] transition-all duration-300">
+                            <p className="text-4xl sm:text-5xl font-bold text-[#7C5CFF] transition-all duration-300">
                                 {total} {symbol}
                             </p>
                             <p className="text-[#888] text-sm mt-4 border-l-2 border-[#7C5CFF] pl-4">
@@ -166,7 +166,7 @@ const PriceCalculator = () => {
                             <button
                                 type="button"
                                 onClick={() => router.push("/get-started")}
-                                className="inline-flex items-center justify-center gap-2 bg-[#7C5CFF] px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-[#6B4FE0] hover:-translate-y-0.5 shadow-lg shadow-[#7C5CFF]/20"
+                                className="w-full inline-flex items-center justify-center gap-2 bg-[#7C5CFF] px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-[#6B4FE0] hover:-translate-y-0.5 shadow-lg shadow-[#7C5CFF]/20"
                             >
                                 {t("sections.pricing.ctaStrong")} <HiOutlineArrowRight />
                             </button>

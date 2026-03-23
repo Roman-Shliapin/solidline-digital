@@ -28,7 +28,7 @@
       "services": "Usługi (opcjonalnie)",
       "customers": "Klienci (opcjonalnie)",
       "stylePreference": "Preferencja stylu (opcjonalnie)",
-      "phone": "Telefon (opcjonalnie)",
+      "phone": "Numer telefonu (opcjonalnie)",
       "instagram": "Instagram (opcjonalnie)",
       "website": "Strona (opcjonalnie)"
     },
@@ -63,7 +63,8 @@
       "businessTypeRequired": "Wybierz rodzaj działalności",
       "descriptionRequired": "Opis firmy jest wymagany",
       "submitFailed": "Coś poszło nie tak. Spróbuj ponownie.",
-      "networkError": "Błąd sieci. Sprawdź połączenie."
+      "networkError": "Błąd sieci. Sprawdź połączenie.",
+      "phoneInvalid": "Wprowadź poprawny numer telefonu (min. 8 cyfr)."
     },
     "submitting": "Wysyłanie..."
   },

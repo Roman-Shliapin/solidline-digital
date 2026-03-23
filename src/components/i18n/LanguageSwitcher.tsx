@@ -12,13 +12,7 @@ export default function LanguageSwitcher({
   const { lang, setLang } = useLanguage();
 
   return (
-    <div
-      className={
-        mode === "fixed"
-          ? "fixed right-4 top-4 z-50"
-          : "flex"
-      }
-    >
+    <div className={mode === "fixed" ? "fixed right-2 top-4 sm:right-4 sm:top-4 z-50" : "flex"}>
       <div className="flex items-center gap-2 rounded-full border border-[#222] bg-[#0A0A0A]/70 backdrop-blur-md px-3 py-2">
       {LANGS.map((l) => (
         <button

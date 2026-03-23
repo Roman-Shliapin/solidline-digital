@@ -28,7 +28,7 @@
       "services": "Services (optional)",
       "customers": "Customers (optional)",
       "stylePreference": "Style preference (optional)",
-      "phone": "Phone (optional)",
+      "phone": "Phone number (optional)",
       "instagram": "Instagram (optional)",
       "website": "Website (optional)"
     },
@@ -63,7 +63,8 @@
       "businessTypeRequired": "Select a business type",
       "descriptionRequired": "Business description is required",
       "submitFailed": "Something went wrong. Please try again.",
-      "networkError": "Network error. Check your connection."
+      "networkError": "Network error. Check your connection.",
+      "phoneInvalid": "Enter a valid phone number (at least 8 digits)."
     },
     "submitting": "Submitting..."
   },

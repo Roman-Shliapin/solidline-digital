@@ -4,10 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
-import { HiOutlineUser, HiOutlineMail, HiOutlineOfficeBuilding, HiOutlineBriefcase, HiOutlineDocumentText, HiOutlineViewGrid, HiOutlineUserGroup, HiOutlinePhone, HiOutlinePhotograph, HiOutlineGlobe } from "react-icons/hi";
+import { HiOutlineUser, HiOutlineMail, HiOutlineOfficeBuilding, HiOutlineBriefcase, HiOutlineDocumentText, HiOutlineViewGrid, HiOutlineUserGroup, HiOutlinePhotograph, HiOutlineGlobe } from "react-icons/hi";
 import type { BusinessType, LeadFormData, StylePreference } from "@/types/lead";
 import { FORM } from "@/styles/forms";
 import { useT } from "@/hooks/useT";
+import PhoneField from "@/components/PhoneField";
 
 const BUSINESS_OPTIONS: { value: BusinessType; labelKey: string }[] = [
   { value: "local-service", labelKey: "form.businessTypes.local-service" },
@@ -105,6 +106,9 @@ export default function GetStartedPage() {
   const handleSubmit = async () => {
     setError("");
 
+    const phoneDigits = (form.phone ?? "").replace(/\D/g, "");
+    const isPhoneValid = phoneDigits.length === 0 || phoneDigits.length >= 8;
+
     // Safety validation even though UI gates the steps
     if (!validateStep1()) {
       setAttemptedStep(1);
@@ -117,12 +121,17 @@ export default function GetStartedPage() {
       return;
     }
 
+    if (!isPhoneValid) {
+      setAttemptedStep(3);
+    }
+
     setIsSubmitting(true);
     try {
+      const payloadPhone = isPhoneValid ? form.phone : undefined;
       const res = await fetch("/api/leads/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, company: honeypot }),
+        body: JSON.stringify({ ...form, company: honeypot, phone: payloadPhone }),
       });
 
       if (!res.ok) {
@@ -368,20 +377,12 @@ export default function GetStartedPage() {
               <label htmlFor="phone" className={FORM.label}>
                 {t("form.labels.phone")}
               </label>
-              <div className="relative">
-                <HiOutlinePhone className={FORM.icon} />
-                <input
-                  className={FORM.input}
-                  id="phone"
-                  type="tel"
-                  value={form.phone ?? ""}
-                  onChange={(e) => update("phone", e.target.value)}
-                  placeholder={t("form.placeholders.phone")}
-                  maxLength={20}
-                  inputMode="tel"
-                  autoComplete="tel"
-                />
-              </div>
+              <PhoneField
+                id="phone"
+                value={form.phone}
+                onChange={(next) => update("phone", next)}
+                showError={attemptedStep === 3}
+              />
             </div>
 
             <div>
